@@ -14,9 +14,10 @@ class UserController extends Controller
         return view('admin.dashboard', ['users' => $user]);
     }
 
-    public function create()
+    public function show()
     {
-        return view('pages.students.create');
+        $user = DB::table('users')->get();
+        return view('\admin\Utilisateurs', ['users' => $user]);
     }
 
     public function store(Request $request)

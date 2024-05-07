@@ -5,78 +5,38 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="flex flex-wrap justify-between mb-8">
-            <div class="w-full md:w-1/2">
-                <input type="text" placeholder="Rechercher par nom/type de publication" class="form-input w-full mb-4 px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300">
-                <div class="flex items-center gap-4">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">Filtrer</button>
-                    <button class="bg-gray-200 text-gray-600 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors">Tout afficher</button>
+    <section class="h-screen w-screen bg-gradient-to-br from-pink-50 to-indigo-100 p-8">
+        <h1 class="text-center font-bold text-2xl text-indigo-500">liste des universités au togo </h1>
+            <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 my-10">
+                @foreach ($universities as $university)
+                <!-- Card 1 -->
+                <div class="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
+                    <img class="h-56 lg:h-60 w-full object-cover" src="{{ $university->image }}" alt="" />
+                    <div class="p-3">
+                        <h3 class="font-semibold text-xl leading-6 text-gray-700 my-2">
+                            {{ $university->nom }}
+                        </h3>
+                        <p class="paragraph-normal text-gray-600">
+                            {{ $university->description }}...
+                        </p>
+                            <a href="{{ route('university.show', $university->id) }}" target="_blank"
+                            class="group relative overflow-hidden bg-blue-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center">
+                            <span class="z-40">Voir plus</span>
+                            <svg class="z-40 ml-2 -mr-1 w-3 h-3 transition-all duration-300 group-hover:translate-x-1" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <div
+                                class="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000">
+                            </div>
+                        </a>
+                    </div>
                 </div>
+                @endforeach
             </div>
-        </div>
-
-        <section class="mb-8">
-            <h3 class="text-lg font-bold mb-4">En vedette</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Exemple d'une université en vedette -->
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-cover bg-center h-40" style="background-image: url('url_de_votre_image.jpg')"></div>
-                    <div class="p-4">
-                        <h4 class="text-base font-bold mb-2">Nom de l'Université</h4>
-                        <p class="text-gray-600 mb-2">Informations sur l'université</p>
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-600">4.5 étoiles</span>
-                            <!-- Ajoutez ici un élément pour afficher les étoiles -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Ajoutez ici d'autres éléments en vedette -->
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-cover bg-center h-40" style="background-image: url('url_de_votre_image.jpg')"></div>
-                    <div class="p-4">
-                        <h4 class="text-base font-bold mb-2">Nom de l'Université</h4>
-                        <p class="text-gray-600 mb-2">Informations sur l'université</p>
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-600">4.5 étoiles</span>
-                            <!-- Ajoutez ici un élément pour afficher les étoiles -->
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-cover bg-center h-40" style="background-image: url('url_de_votre_image.jpg')"></div>
-                    <div class="p-4">
-                        <h4 class="text-base font-bold mb-2">Nom de l'Université</h4>
-                        <p class="text-gray-600 mb-2">Informations sur l'université</p>
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-600">4.5 étoiles</span>
-                            <!-- Ajoutez ici un élément pour afficher les étoiles -->
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-cover bg-center h-40" style="background-image: url('url_de_votre_image.jpg')"></div>
-                    <div class="p-4">
-                        <h4 class="text-base font-bold mb-2">Nom de l'Université</h4>
-                        <p class="text-gray-600 mb-2">Informations sur l'université</p>
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-600">4.5 étoiles</span>
-                            <!-- Ajoutez ici un élément pour afficher les étoiles -->
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="bg-cover bg-center h-40" style="background-image: url('url_de_votre_image.jpg')"></div>
-                    <div class="p-4">
-                        <h4 class="text-base font-bold mb-2">Nom de l'Université</h4>
-                        <p class="text-gray-600 mb-2">Informations sur l'université</p>
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-600">4.5 étoiles</span>
-                            <!-- Ajoutez ici un élément pour afficher les étoiles -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+        
+    </section>
+            
 </x-app-layout>

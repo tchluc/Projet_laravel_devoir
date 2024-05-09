@@ -6,12 +6,19 @@ use App\Models\Commentaire;
 use App\Models\Critere;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
 {
     public function create()
         {
             return view('admin.FormulaireCritere');
+        }
+
+        public function show()
+        {
+            $criteres = DB::table('criteres')->get();
+            return view('admin.listeCriteres', ['criteres' => $criteres]);
         }
     
         public function storeCritere(Request $request)
@@ -49,7 +56,7 @@ class NoteController extends Controller
                     $critereId = substr($key, 7); // Récupérer l'ID du critère à partir du nom du champ
                     $note = new Note();
                     $note->id_users = auth()->user()->id; // L'ID de l'utilisateur connecté
-                    $note->id_universite = $universiteId; // L'ID de l'université
+                    $note->id_universite = $universiteId; 
                     $note->id_critere = $critereId;
                     $note->value = $value;
                     $note->save();
@@ -57,5 +64,11 @@ class NoteController extends Controller
             }
         
             return redirect('admin.university.show');
+        }
+
+        public function destroy($id)
+        {
+            $deleted = DB::table('criteres')->where('id', '=', $id)->delete();
+            
         }
 }

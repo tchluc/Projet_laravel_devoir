@@ -26,19 +26,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
-route::get('admin/dashboard',[HomeController::class,'index']);
+route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
-route::get('delete/{id}',[HomeController::class,'destroy']);
-Route::get('admin/users', [UserController::class,'show'])->name('admin.users');
+route::get('delete/{id}', [HomeController::class, 'destroy']);
+Route::get('admin/users', [UserController::class, 'show'])->name('admin.users');
 Route::get('admin/universities/create', [UniversiteController::class, 'create'])->name('university.create');
 Route::post('admin/universities/store', [UniversiteController::class, 'store'])->name('university.store');
 Route::get('/universities/{id}', [UniversiteController::class, 'show'])->name('university.show');
-Route::post('/universities/{id}/comments', [NoteController::class, 'store'])->name('comment.store');
 
 Route::get('/admin/critere', [NoteController::class, 'create'])->name('critere.create');
-Route::post('/admin/critere', [NoteController::class, 'store'])->name('critere.store');
+Route::post('/admin/critere', [NoteController::class, 'storeCritere'])->name('critere.store');
+Route::get('admin/criteres/show', [NoteController::class, 'show'])->name('critere.show');
+route::get('delete/{id}', [NoteController::class, 'destroy']);
 
-Route::post('/save-ratings', [NoteController::class, 'store'])->name('ratings.store');
+Route::post('/universities/{id}/comments', [NoteController::class, 'store'])->name('comment.store');

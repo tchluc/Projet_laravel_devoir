@@ -19,7 +19,7 @@
                         <p class="paragraph-normal text-gray-600">
                             {{ $university->description }}...
                         </p>
-                            <a href="{{ route('university.show', $university->id) }}" target="_blank"
+                            <a href="{{ route('university.show', $university->id) }}"
                             class="group relative overflow-hidden bg-blue-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center">
                             <span class="z-40">Voir plus</span>
                             <svg class="z-40 ml-2 -mr-1 w-3 h-3 transition-all duration-300 group-hover:translate-x-1" fill="currentColor"

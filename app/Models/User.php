@@ -44,4 +44,32 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Vos autres attributs, relations, etc.
+
+    /**
+     * Calcule la moyenne des notes attribuées par cet utilisateur.
+     *
+     * @return float|null
+     */
+    public function moyenneNotesUser()
+    {
+        $totalNotes = $this->notes()->count();
+        if ($totalNotes === 0) {
+            return null; 
+        }
+
+        $sommeNotes = $this->notes()->sum('value');
+        return $sommeNotes / $totalNotes;
+    }
+
+    /**
+     * Relation avec le modèle Note.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_users');
+    }
 }

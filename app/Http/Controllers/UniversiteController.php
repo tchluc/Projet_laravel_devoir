@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Commentaire;
 use App\Models\Critere;
 use App\Models\Universite;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UniversiteController extends Controller
 {
@@ -50,7 +52,12 @@ class UniversiteController extends Controller
             $university = Universite::findOrFail($id);
             $criteres = Critere::all();
             $comments = Commentaire::where('id_universite', $id)->paginate(10);
+            $user = User::all();
+
+            $moyenneNotes = $university->moyenneNotes();
+            
+            
         
-            return view('admin.university.show', compact('university', 'comments', 'criteres'));
+            return view('admin.university.show', compact('university', 'comments', 'criteres' , 'moyenneNotes',));
         }
 }

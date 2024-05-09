@@ -21,6 +21,14 @@ return new class extends Migration
             $table->foreign('id_critere')->references('id')->on('criteres');
             $table->float('value');
             $table->timestamps();
+
+            $table->dropForeign(['id_critere']);
+    
+        // Ajoutez une nouvelle contrainte de clé étrangère avec l'option ON DELETE CASCADE
+        $table->foreign('id_critere')
+              ->references('id')
+              ->on('criteres')
+              ->onDelete('cascade');
         });
     }
 
@@ -31,4 +39,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('notes');
     }
+
+    
 };

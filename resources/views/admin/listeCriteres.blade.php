@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    @extends('layouts.adminDashboard')
+    
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -12,19 +12,19 @@
                             <thead class="bg-sky-500">
                                 <tr class="text-white">
                                     <th class="px-6 py-3 text-left text-sm font-semibold">Id</th>
-                                    <th class="px-6 py-3 text-left text-sm font-semibold">Nom</th>
-                                    <th class="px-6 py-3 text-left text-sm font-semibold">Email</th>
+                                    <th class="px-6 py-3 text-left text-sm font-semibold">Nom du critere</th>
+                                    <th class="px-6 py-3 text-left text-sm font-semibold">Description</th>
                                     <th class="px-6 py-3 text-left text-sm font-semibold">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($users as $user)
+                                @foreach ($criteres as $critere)
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->id }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->name }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $critere->id }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $critere->nom }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $critere->description }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <a href="{{ url('delete/' . $user->id) }}"
+                                            <a href="{{ url('delete/' . $critere->id) }}"
                                                 class="text-red-500 hover:text-red-700">Supprimer</a>
                                         </td>
                                     </tr>
